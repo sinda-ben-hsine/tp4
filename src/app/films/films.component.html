@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table e class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Dureé en minutes</th>
+            <th>Date Sortir</th>
+            <th>Genre</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let film of films">
+          <tr>
+            <td>{{ film.idFilm }}</td>
+            <td>{{ film.nomFilm }}</td>
+            <td>{{ film.dureeFilm }}</td>
+            <td>{{ film.dateSortir | date : "dd/MM/yyyy" }}</td>
+            <td>{{ film.genre.nomGen }}</td>
+            <td>
+              <a class="btn btn-danger" (click)="supprimerFilm(film)"
+                >Supprimer</a
+              >
+            </td>
+            <td>
+              <a
+                class="btn btn-success"
+                [routerLink]="['/updateFilm', film.idFilm]"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

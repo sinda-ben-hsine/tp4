@@ -1,0 +1,71 @@
+<div class="container">
+  <!--form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Nom film en tapant</label>
+      <input
+        class="form-control"
+        #searchTerm
+        (keyup)="onKeyUp(searchTerm.value)"
+      />
+    </div>
+  </form!-->
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Nom Film en tapant</label>
+      <input
+        #nom
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+        class="form-control"
+      />
+    </div>
+  </form>
+
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Genre</label>
+    <select
+      class="form-control form-control-lg"
+      id="idGen"
+      name="idGen"
+      [(ngModel)]="idGen"
+      (change)="onChange()"
+    >
+      <option *ngFor="let gen of genres" [value]="gen.idGen">
+        {{ gen.nomGen }}
+      </option>
+    </select>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Durée en minutes</th>
+            <th>Date Sortie</th>
+            <th>Genre</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let film of films | searchFilter : searchTerm">
+            <td>{{ film.idFilm }}</td>
+            <td>{{ film.nomFilm }}</td>
+            <td>{{ film.dureeFilm }}</td>
+            <td>{{ film.dateSortir | date : "dd/MM/yyyy" }}</td>
+            <td>{{ film.genre.nomGen }}</td>
+            <td>
+              <a class="btn btn-danger" (click)="supprimerFilm(film)"
+                >Supprimer</a
+              >
+              <a class="btn btn-success" (click)="modifierFilm(film)"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
