@@ -12,6 +12,7 @@
       [(ngModel)]="currentFilm.idFilm"
       name="idFilm"
       class="form-control"
+      required
     />
   </div>
 
@@ -22,6 +23,7 @@
       [(ngModel)]="currentFilm.nomFilm"
       name="nomFilm"
       class="form-control"
+      required
     />
   </div>
 
@@ -32,19 +34,22 @@
       [(ngModel)]="currentFilm.dureeFilm"
       name="dureeFilm"
       class="form-control"
+      required
     />
   </div>
 
   <div class="col-sm-4 col-md-4 col-lg-4">
-    <label>Date Sortir</label>
+    <label>Date Sortie</label>
     <input
       type="date"
       [ngModel]="currentFilm.dateSortir | date : 'yyyy-MM-dd'"
       (ngModelChange)="currentFilm.dateSortir = $event"
       name="dateSortir"
       class="form-control"
+      required
     />
   </div>
+
   <div class="col-sm-4 col-md-4 col-lg-4">
     <label>Genre:</label>
     <select
@@ -52,14 +57,29 @@
       id="idGen"
       name="idGen"
       [(ngModel)]="updatedGenID"
+      required
     >
+      <option value="" disabled selected>Sélectionner un genre</option>
       <option *ngFor="let gen of genres" [value]="gen.idGen">
         {{ gen.nomGen }}
       </option>
     </select>
   </div>
 
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Email:</label>
+    <input
+      type="email"
+      [(ngModel)]="currentFilm.email"
+      name="email"
+      class="form-control"
+      required
+    />
+  </div>
+
   <div class="mt-2">
     <button type="submit" class="btn btn-success">Modifier</button>
+    <div *ngIf="message" class="alert alert-danger mt-2">{{ message }}</div>
+    <!-- Affichage du message d'erreur -->
   </div>
 </form>

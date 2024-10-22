@@ -7,5 +7,6 @@ export class Films {
     dureeFilm! : number;
      dateSortir! : Date ;
      genre!: Genre;
+     email!: string;
      
     }

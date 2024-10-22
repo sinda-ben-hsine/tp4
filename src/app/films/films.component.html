@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card shadow mb-4">
     <div class="card-body">
-      <table e class="table table-striped">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Id</th>
@@ -9,21 +9,27 @@
             <th>Dureé en minutes</th>
             <th>Date Sortir</th>
             <th>Genre</th>
+            <th>Email</th>
+            <!-- Nouvelle colonne pour l'email -->
+            <th>Actions</th>
+            <!-- Regroupement des actions -->
           </tr>
         </thead>
-        <tbody *ngFor="let film of films">
-          <tr>
+        <tbody>
+          <tr *ngFor="let film of films">
+            <!-- *ngFor doit être ici -->
             <td>{{ film.idFilm }}</td>
             <td>{{ film.nomFilm }}</td>
             <td>{{ film.dureeFilm }}</td>
             <td>{{ film.dateSortir | date : "dd/MM/yyyy" }}</td>
             <td>{{ film.genre.nomGen }}</td>
+            <!-- Assurez-vous que genre est bien assigné -->
+            <td>{{ film.email }}</td>
+            <!-- Affichage de l'email -->
             <td>
-              <a class="btn btn-danger" (click)="supprimerFilm(film)"
-                >Supprimer</a
-              >
-            </td>
-            <td>
+              <button class="btn btn-danger" (click)="supprimerFilm(film)">
+                Supprimer
+              </button>
               <a
                 class="btn btn-success"
                 [routerLink]="['/updateFilm', film.idFilm]"

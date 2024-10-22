@@ -1,4 +1,8 @@
-<form>
+<div class="container">
+  <h2>Ajouter un Film</h2>
+</div>
+
+<form (ngSubmit)="addFilm()">
   <div class="col-sm-2 col-md-2 col-lg-2">
     <label>ID Film</label>
     <input
@@ -6,6 +10,7 @@
       [(ngModel)]="newFilm.idFilm"
       name="idFilm"
       class="form-control"
+      required
     />
   </div>
   <div class="col-sm-4 col-md-4 col-lg-4">
@@ -15,6 +20,7 @@
       [(ngModel)]="newFilm.nomFilm"
       name="nomFilm"
       class="form-control"
+      required
     />
   </div>
   <div class="col-sm-2 col-md-2 col-lg-2">
@@ -24,15 +30,17 @@
       [(ngModel)]="newFilm.dureeFilm"
       name="dureeFilm"
       class="form-control"
+      required
     />
   </div>
   <div class="col-sm-4 col-md-4 col-lg-4">
-    <label>Date Sortir</label>
+    <label>Date Sortie</label>
     <input
       type="date"
       [(ngModel)]="newFilm.dateSortir"
       name="dateSortir"
       class="form-control"
+      required
     />
   </div>
   <div class="col-sm-4 col-md-4 col-lg-4">
@@ -42,21 +50,29 @@
       id="idGen"
       name="idGen"
       [(ngModel)]="newIdGen"
+      required
     >
+      <option value="" disabled selected>Sélectionner un genre</option>
       <option *ngFor="let gen of genres" [value]="gen.idGen">
         {{ gen.nomGen }}
       </option>
     </select>
   </div>
 
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Email:</label>
+    <input
+      type="email"
+      [(ngModel)]="newFilm.email"
+      name="email"
+      class="form-control"
+      required
+    />
+  </div>
+
   <div class="mt-2">
-    <button type="submit" (click)="addFilm()" class="btn btn-success">
-      Ajouter
-    </button>
-    <div>
-      <h3>
-        {{ message }}
-      </h3>
-    </div>
+    <button type="submit" class="btn btn-success">Ajouter</button>
+    <div *ngIf="message" class="alert alert-danger mt-2">{{ message }}</div>
+    <!-- Affichage du message d'erreur -->
   </div>
 </form>
